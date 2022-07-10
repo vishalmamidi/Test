@@ -23,12 +23,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #       - uses: actions/checkout@v3
 
-      - name: downcase REPO_LC
-        run: |
-          echo "REPO_LC=${GITHUB_REPOSITORY#*/,,}" >>${GITHUB_ENV}
+      - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $1}')" >> $GITHUB_ENV
+        shell: bash
 
-# ${GITHUB_REPOSITORY#*/}
-
-      - name: print REPO_LC
+      - name: print repo name
         run: |
-          echo "${REPO_LC}"
+          echo ${{ env.REPOSITORY_NAME }}
