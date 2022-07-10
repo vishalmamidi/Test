@@ -29,3 +29,14 @@ jobs:
       - name: print repo name
         run: |
           echo ${{ env.REPOSITORY_NAME }}
+          
+      - id: string
+        uses: ASzc/change-string-case-action@v2
+        with:
+          string: ${{ github.event.repository.name }}
+      
+      - id: step2
+        run: echo ${{ steps.string.outputs.lowercase }}
+        
+        
+          
